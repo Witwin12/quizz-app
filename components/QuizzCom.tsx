@@ -1,30 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable, Image, ImageSourcePropType } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 
-// กำหนดประเภทของตัวเลือก
 interface Question {
   question: string;
   choices: string[];
 }
 
-// กำหนดประเภทของ props
 interface QuizzProps {
   question: Question;
+  selectedAnswer: string | null;
+  setSelectedAnswer: (answer: string) => void;
 }
 
-// คอมโพเนนต์ Quizz ที่รับ props เป็นคำถาม
-const QuizzCom: React.FC<QuizzProps> = ({ question }) => {
-
+const QuizzCom: React.FC<QuizzProps> = ({ question, selectedAnswer, setSelectedAnswer }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.questionText}>{question.question}</Text>
-
-
       {question.choices.map((choice, index) => (
         <Pressable
           key={index}
-          style={styles.choiceButton}
-          onPress={() => console.log(`Selected: ${choice}`)}
+          style={[
+            styles.choiceButton,
+            selectedAnswer === choice && styles.selectedChoiceButton,
+          ]}
+          onPress={() => setSelectedAnswer(choice)}
         >
           <Text style={styles.choiceText}>
             {String.fromCharCode(65 + index)}. {choice}
@@ -37,7 +36,6 @@ const QuizzCom: React.FC<QuizzProps> = ({ question }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 20,
     backgroundColor: '#f5f5f5',
   },
@@ -51,6 +49,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: '#007BFF',
     borderRadius: 5,
+  },
+  selectedChoiceButton: {
+    backgroundColor: '#0056b3',
   },
   choiceText: {
     fontSize: 16,

@@ -12,8 +12,16 @@ const ITEMS_PER_PAGE = 1;
 
 export default function Quizz() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedAnswers, setSelectedAnswers] = useState<(string | null)[]>(Array(data.length).fill(null));
+
   const currentData = data.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+
+  const handleAnswerSelect = (answer: string) => {
+    const updatedAnswers = [...selectedAnswers];
+    updatedAnswers[currentPage - 1] = answer;
+    setSelectedAnswers(updatedAnswers);
+  };
 
   return (
     <View style={styles.container}>
@@ -21,8 +29,11 @@ export default function Quizz() {
         data={currentData}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          // ใช้ QuizzCom แทนการแสดงผลข้อมูลตรงๆ
-          <QuizzCom question={item} />
+          <QuizzCom
+            question={item}
+            selectedAnswer={selectedAnswers[currentPage - 1]}
+            setSelectedAnswer={handleAnswerSelect}
+          />
         )}
         ListFooterComponent={
           <View style={styles.paginationContainer}>
