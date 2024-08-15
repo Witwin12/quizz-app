@@ -1,0 +1,29 @@
+#Question:
+Question 1:
+The weight of every player on a school’s football team is recorded.
+What type of data collection is this?
+
+#Question:
+Question 2:
+Weight of 20 patients in a hospital with 100 patients
+What type of data collection is this?
+
+#Question:
+Question 3: 
+Form this data:
+8 2 1 12 6 4 9 8 9 13 5 15 7 6 8 11 1 7 8 9
+What shape of distribution?
+
+#Question:
+Question 4:
+Form this data:
+1 5 7 5 9 1 5 3 9 9 3 6 7 6 0 6 1 7 8 4 2 2 3
+What shape of distribution?
+
+#Question:
+Question 5:
+Roll a six-sided die and then toss a coin. Determine all sample space.
+
+#Question:
+Question 6:
+From question five, what is the probability of getting an even number?
