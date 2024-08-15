@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import QuizzCom from '@/components/QuizzCom';
+import Timer from '@/components/Timer';
 
 // ข้อมูลคำถาม
 const data = [
@@ -67,6 +68,7 @@ export default function Quizz() {
           </View>
         }
       />
+      <Timer></Timer>
     </View>
   );
 }
