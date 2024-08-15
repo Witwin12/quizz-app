@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import QuizzCom from '@/components/QuizzCom';
 import Timer from '@/components/Timer';
+import { Link } from 'expo-router'; // Import Link
 
 // ข้อมูลคำถาม
 const data = [
@@ -68,7 +69,14 @@ export default function Quizz() {
           </View>
         }
       />
-      <Timer></Timer>
+      
+      <Link href="/result" asChild>
+        <Pressable style={selectedAnswers.some(element => element === null)? styles.disableButton : styles.button } disabled={selectedAnswers.some(element => element === null)}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </Pressable>
+      </Link>
+
+      <Timer />
     </View>
   );
 }
@@ -103,6 +111,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#0056b3',
   },
   activePageButtonText: {
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#28a745', 
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center', 
+    minWidth: 100, 
+  },
+  disableButton: {
+    backgroundColor: 'gray',
+    opacity: 0.35,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center', 
+    minWidth: 100, 
+  },
+  buttonText: {
+    color: '#fff', 
+    fontSize: 16,
+    textAlign: 'center', 
     fontWeight: 'bold',
   },
 });
