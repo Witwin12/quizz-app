@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import QuizzCom from '@/components/QuizzCom';
 
@@ -22,6 +22,10 @@ export default function Quizz() {
     updatedAnswers[currentPage - 1] = answer;
     setSelectedAnswers(updatedAnswers);
   };
+
+  useEffect(() => {
+    console.log(selectedAnswers);
+  }, [selectedAnswers]);
 
   return (
     <View style={styles.container}>
